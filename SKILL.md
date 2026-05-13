@@ -1,6 +1,6 @@
 ---
 name: bosch-procedure-documentation
-description: Write or retrofit Bosch internal Confluence documents using the PIX "Template - Procedure Documentation" page, preserving Confluence macros by working in storage format instead of markdown.
+description: Use when creating, rewriting, migrating, standardizing, or adding images/attachments to Bosch internal Confluence documents in PIX, especially when preserving Confluence macros and editor compatibility matters.
 ---
 
 # Bosch Procedure Documentation
@@ -41,6 +41,29 @@ Produce Bosch internal documentation that:
 5. If the target page was previously rewritten in markdown and macros were lost, rebuild the page from template storage content.
 6. Do not invent owner, access classification, or review metadata unless the user explicitly provides it.
 7. Keep wording factual and operational. Avoid marketing language.
+8. **Never embed Confluence attachment images as raw HTML `<img>` that points to `/download/attachments/...` or `inside-docupedia.../download/attachments/...`.** This can make the page view appear updated while the Confluence editor crashes with a System Error.
+9. Treat image insertion as a high-risk storage update. If editor compatibility cannot be verified immediately, upload the files as attachments and link/reference them textually instead of embedding them in the page body.
+
+## Confluence Images And Attachments
+
+When adding images to an existing Confluence page:
+
+1. Prefer official source links or page attachments with clear source attribution.
+2. Upload images as attachments first; verify the attachment list before touching page body storage.
+3. Do not insert SVG attachments into the page body unless the target Confluence instance is known to render and edit SVG safely. Prefer PNG/JPEG for inline display.
+4. Do not use raw HTML `<img>` for internal Confluence attachments. Do not use absolute or relative `download/attachments` URLs in page storage.
+5. Do not assume that `confluence_update_page` success means the page is healthy. A page can save successfully but fail when opened in the editor.
+6. For production pages, make the smallest possible image change, then verify both:
+   - the page can be read back in storage format
+   - the page can still be opened in Confluence Edit mode
+7. If Edit mode fails after an image update, immediately restore the last known editable storage version before attempting another image strategy.
+
+Safe alternatives when inline image rendering is uncertain:
+
+- add an attachment and include a normal text link to it
+- add a source URL in `References`
+- ask the user to insert the uploaded attachment through the Confluence editor UI
+- test the exact storage markup on a disposable child page before updating the production page
 
 ## Supported Tasks
 
@@ -48,6 +71,7 @@ Produce Bosch internal documentation that:
 - retrofit an existing Confluence page to the PIX template
 - migrate freeform content into the template structure
 - fill template sections based on source material
+- add images or attachments to an existing Confluence documentation page
 - preserve and restore macros in a broken template-based page
 
 ## Standard Workflow
@@ -92,6 +116,8 @@ When writing back to Confluence:
 - use `content_format="storage"`
 - include a clear `version_comment`
 - add useful page labels when available
+- for image/attachment changes, keep a known-good historical version ready for rollback
+- after publishing image/attachment changes, verify the page still opens in Edit mode before claiming completion
 
 ## Required Template Structure
 
@@ -174,6 +200,8 @@ Before finishing, confirm:
 - placeholders were preserved where information is missing
 - references and links still work
 - version comment explains the update
+- for image changes, no raw internal `download/attachments` image URLs were written into storage
+- for image changes, the user or browser verification confirms Edit mode still opens
 
 ## Example Triggers
 
@@ -189,6 +217,7 @@ Prefer concise execution updates such as:
 - "Reading template and target page storage content."
 - "Rebuilding the page from template storage so macros are preserved."
 - "Updating Confluence with storage format and labels."
+- "Uploading image files as attachments first; not embedding them until Edit mode can be verified."
 
 When done, return:
 
