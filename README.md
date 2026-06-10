@@ -1,18 +1,11 @@
 # bosch-procedure-documentation
 
-A reusable agent skill for writing or retrofitting Bosch internal Confluence procedure documents with the PIX **Template - Procedure Documentation** page while preserving Confluence macros by working in storage format.
+Agent skill for writing or retrofitting Bosch internal Confluence procedure documents using the BD/ISA-CN template (PIX space). Preserves Confluence macros by working in storage format instead of markdown.
 
 ## Contents
 
-- `SKILL.md` — the complete skill definition
-
-## What this skill does
-
-- creates new Bosch procedure pages from the PIX template
-- retrofits existing Confluence pages to the template
-- preserves or restores Confluence macros
-- keeps wording concise, operational, and audit-friendly
-- updates Confluence pages in storage format instead of markdown
+- `SKILL.md` — core skill instructions (quick start, workflow, essential rules)
+- `REFERENCE.md` — detailed reference (images, macros, metadata, writing style, checklists)
 
 ## Default template
 
@@ -20,6 +13,10 @@ A reusable agent skill for writing or retrofitting Bosch internal Confluence pro
 - Page: `Template - Procedure Documentation`
 - Page ID: `4961265865`
 
-## Notes
+## What this skill does
 
-This repository currently publishes the skill definition only.
+- creates new Bosch procedure pages from the BD/ISA-CN template
+- retrofits existing Confluence pages to the template
+- preserves or restores Confluence macros (details, status, toc, drawio, etc.)
+- keeps wording concise, operational, and audit-friendly
+- updates Confluence pages in storage format instead of markdown
