@@ -1,15 +1,17 @@
 ---
 name: bosch-brand-style-guide
-description: Applies Bosch corporate design rules when generating or reviewing HTML/CSS, layout, typography, color, imagery, logo use, the top supergraphic gradient ribbon, full-width header patterns (as on bosch.com), and accessibility for one-pagers and web UI. Use when the user asks for a design review, UI/UX feedback, brand compliance check, Bosch brand guidelines, corporate design, one-pagers, landing pages, or Bosch-branded collateral in any project.
+description: Bosch corporate design for HTML/CSS — supergraphic, palette, logo SVG, typography, spacing, layout, imagery, tone, accessibility. Use for Bosch-branded one-pagers, landing pages, design reviews, or brand compliance checks.
 ---
 
 # Bosch brand style guide (one-pager HTML/CSS)
 
 ## Instructions
 
-Act as an expert front-end developer and brand designer. When **creating** or **reviewing** design (HTML/CSS, layout, components, visuals, or copy tone), apply the Bosch brand rules below unless the user specifies otherwise.
+When **creating** or **reviewing** HTML/CSS, layout, components, or copy tone, apply the Bosch brand rules below unless the user specifies otherwise.
 
-For **reviews**, call out violations with concrete fixes (e.g. wrong colors, spacing off the 8px grid, Bosch Red overuse, weak contrast, logo clear space, missing or misplaced **supergraphic** / header ribbon, generic imagery or `alt` text).
+For **reviews**, call out violations with concrete fixes — wrong colors, spacing off the 8px grid, Bosch Red overuse, weak contrast, logo clear space, missing or misplaced **supergraphic** / header ribbon, generic imagery or `alt` text.
+
+> **Done when:** every rule below is checked against the output; any violation has a concrete fix attached.
 
 ## Dos and don'ts
 
@@ -21,8 +23,6 @@ For **reviews**, call out violations with concrete fixes (e.g. wrong colors, spa
 | Use "Bosch Office Sans" or the specified fallbacks. | Do not use Bosch Red (`--bosch-red`) for anything other than the logo or a single primary CTA. |
 | Use authentic, human-centric imagery. | Do not use purely decorative or abstract shapes. |
 | Meet WCAG AA text contrast. | Do not place content or other elements inside the logo clear space. |
-
-Load **Bosch Office Sans** only according to your organization’s font licensing and delivery policy (CDN, internal host, or local files).
 
 ---
 
@@ -78,6 +78,8 @@ Use **integer multiples** of `--space-unit` for margins, padding, and gaps (not 
 
 - **Headings (`h1`–`h3`):** `font-family: var(--font-primary);` and `font-weight: var(--font-weight-bold);`
 - **Body (`p`, `li`):** `font-family: var(--font-primary);` and `font-weight: var(--font-weight-regular);`
+
+Load **Bosch Office Sans** only according to your organization's font licensing and delivery policy (CDN, internal host, or local files).
 
 ---
 
@@ -257,7 +259,9 @@ Use the **full data URI** from the block above in place of `PHN2ZyB4bWxucz0i...`
 
 On **bosch.com**, this maps to the same structure under different class names (e.g. `.O-Header` + `::before` for the supergraphic, `.O-Header__wrapper` for the white bar with `padding-top: 6px`, `.O-Header__brandLogo` for the logo link). Use those names when reviewing scraped markup; use semantic names like `.site-header` in new static pages unless you must mirror their framework.
 
-**Review checklist**
+**Review checklist (supergraphic)**
+
+> **Done when:** every item passes.
 
 - Supergraphic is `100vw` wide and **6px** tall (unless brand updates the asset).
 - `background-image` uses the official data URI from this skill — not a hand-authored `linear-gradient`.
